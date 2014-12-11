@@ -38,5 +38,6 @@ def test():
     doc = seqReadFile('tweet_content.txt')
     print doc[0]
     ldaIns = lda(doc, 100)
+    ldaIns.save('ret.lda')
     ldaIns.print_topics(100)
 
