@@ -1,0 +1,2 @@
+import lda
+lda.test()
