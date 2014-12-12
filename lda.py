@@ -35,7 +35,7 @@ def test():
         f_doc.write('\n')
     f_in.close()
     f_doc.close()
-    doc = seqReadFile('tweet_content.txt')
+    doc = fastReadFile('tweet_content.txt')
     print doc[0]
     ldaIns = lda(doc, 100)
     ldaIns.save('ret.lda')
