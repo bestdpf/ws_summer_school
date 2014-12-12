@@ -4,13 +4,13 @@ def lda(doc, topicNum):
     stopList = set ('for a of the and to in'.split())
     texts = [[word for word in item if word not in stopList] for item in doc]
     all_tokens = sum(texts,[])
-    tokens_once = set(word for word in set(all_tokesn) if all_tokens.count(word) == 1)
+    tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
     texts = [[word for word in text if word not in tokens_once] for text in texts]
     dic = corpora.Dictionary(texts)
     dic.save('./test.dic')
     corpus = [dic.doc2bow(text) for text in texts]
     corpora.MmCorpus.serialize('./test.mm',corpus)
-    models.ldamodel.LdaModel(corpus = corpus, id2word = dic, num_topics = topicNum,update_every = 1, chunksize = len(texts), passes = 1)
+    ldaIns = models.ldamodel.LdaModel(corpus = corpus, id2word = dic, num_topics = topicNum,update_every = 1, chunksize = 10000, passes = 1)
     return ldaIns
     
 def seqReadFile(filePath):
