@@ -50,6 +50,10 @@ def timeSplit():
     maxDate = [2000,1,1]
     f_in = open('tweet_six_label.txt','r')
     f_t = open('tweet_time.txt','w')
+    f_date = []
+    for i in range(160):
+        f_date_f = open('date' + str(i) + '.txt','w')
+        f_date.append(f_date_f)
     for line in f_in.readlines():
         lst = line.replace('&','').replace('#','').replace('\\','').replace('@','').replace(',','').replace('.','').replace('!','').replace('!','').split()
         item = ' '.join(lst[4::])
@@ -57,10 +61,15 @@ def timeSplit():
         date_info = map(int,date.replace('-',' ').split())
         dateId = calcDateId(date_info)
         print dateId
+        f_date[dateId].write(item + '\n')
         if cmpDate(maxDate, date_info):
             maxDate = date_info[:]
         if cmpDate(date_info, minDate):
             minDate = date_info[:]
+
+    for i in range(160):
+        f_date[i].close()
+
     f_in.close()
     f_t.close()
     print minDate,maxDate
