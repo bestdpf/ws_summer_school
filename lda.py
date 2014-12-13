@@ -2,7 +2,7 @@ from gensim import corpora, models, similarities
 import itertools
 
 def lda(doc, topicNum):
-    stopList = set ('for a of the and to in'.split())
+    stopList = set ('for a of the and to in is'.split())
     texts = [[word for word in item if word not in stopList] for item in doc]
     all_tokens = sum(texts,[])
     tokens_once = set(word for word in set(all_tokens) if all_tokens.count(word) == 1)
@@ -84,7 +84,7 @@ def test():
         f_doc.write('\n')
     f_in.close()
     f_doc.close()
-    doc = seqReadFile('tweet_content.txt')
+    doc = fastReadFile('tweet_content.txt')
     print doc[0]
     ldaIns = lda(doc, 100)
     ldaIns.save('ret.lda')
